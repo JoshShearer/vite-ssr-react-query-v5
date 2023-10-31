@@ -28,7 +28,7 @@ function PageShell({
         }
       }
     }))
-    
+
   const RQWrapper = pageProps && pageProps.dehydratedState ?
     () =>
       <HydrationBoundary state={pageProps.dehydratedState}>{children}</HydrationBoundary>
@@ -47,7 +47,13 @@ function PageShell({
               About
             </a>
           </Sidebar>
-          <Content><QueryClientProvider client={queryClient}><RQWrapper>{children}</RQWrapper></QueryClientProvider></Content>
+          <Content>
+            <QueryClientProvider client={queryClient}>
+              <RQWrapper>
+                {children}
+              </RQWrapper>
+            </QueryClientProvider>
+          </Content>
         </Layout>
       </PageContextProvider>
     </React.StrictMode>

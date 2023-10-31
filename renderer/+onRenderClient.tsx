@@ -1,7 +1,6 @@
 import React from 'react'
 import { hydrateRoot, createRoot, Root } from 'react-dom/client'
 import { PageShell } from './PageShell'
-import { dehydrate, HydrationBoundary, QueryClient, QueryClientProvider, DehydratedState } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 import { PageContext } from './types'
@@ -16,10 +15,10 @@ async function onRenderClient(pageContext: PageContext) {
 
 
   const page = (
-          <PageShell pageContext={pageContext}>
-            <Page {...pageProps} />
-            <ReactQueryDevtools initialIsOpen={false} />
-          </PageShell>
+    <PageShell pageContext={pageContext}>
+      <Page {...pageProps} />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </PageShell>
   )
   const container = document.getElementById('page-view')
 

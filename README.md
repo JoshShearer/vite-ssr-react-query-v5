@@ -4,6 +4,7 @@
 - `Prefetching`
 - `React Query Conditional Rendering => page specific onBeforeRender for data requests/Prefetching`
 - `React-Streaming`
+- `Client Routing`
 - `TypeScript`
 
 ** [_vike.dev_](https://vike.dev/)**
