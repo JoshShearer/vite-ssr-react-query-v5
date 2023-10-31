@@ -1,3 +1,9 @@
-vite-plugin-ssr + react-query
+# React + vike V1 + react-query V5
 
-React Query иReact Router.
+## Features
+- `Prefetching`
+- `React Query Conditional Rendering => page specific onBeforeRender for data requests/Prefetching`
+- `React-Streaming`
+- `TypeScript`
+
+** [_vike.dev_](https://vike.dev/)**

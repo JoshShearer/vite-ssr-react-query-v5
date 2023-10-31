@@ -2,7 +2,8 @@ import React, { ReactNode } from "react";
 import logo from "./logo.svg";
 import "./PageShell.css";
 import { PageContextProvider } from "./usePageContext";
-import { NavLink } from "react-router-dom";
+import { HydrationBoundary, QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { navigate } from "vike/client/router"
 
 import { PageContext } from "./types";
 
@@ -15,20 +16,38 @@ function PageShell({
   pageContext: PageContext;
   children: ReactNode;
 }) {
+  const { pageProps } = pageContext
+
+  const [queryClient] = React.useState(() =>
+    new QueryClient({
+      defaultOptions: {
+        queries: {
+          gcTime: 1000 * 60 * 10,
+          staleTime: Infinity,
+          retryDelay: 2000
+        }
+      }
+    }))
+    
+  const RQWrapper = pageProps && pageProps.dehydratedState ?
+    () =>
+      <HydrationBoundary state={pageProps.dehydratedState}>{children}</HydrationBoundary>
+    : () => <>{children}</>
+
   return (
     <React.StrictMode>
       <PageContextProvider pageContext={pageContext}>
         <Layout>
           <Sidebar>
             <Logo />
-            <NavLink className="navitem" to="/">
+            <a className="navitem" href={"/"}>
               Home
-            </NavLink>
-            <NavLink className="navitem" to="/about">
+            </a>
+            <a className="navitem" href={"/about"}>
               About
-            </NavLink>
+            </a>
           </Sidebar>
-          <Content>{children}</Content>
+          <Content><QueryClientProvider client={queryClient}><RQWrapper>{children}</RQWrapper></QueryClientProvider></Content>
         </Layout>
       </PageContextProvider>
     </React.StrictMode>

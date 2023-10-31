@@ -8,7 +8,12 @@
     "types": ["vite/client"],
     "jsx": "react",
     "skipLibCheck": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": "./",
+    "paths": {
+      "#src/*": ["./src/*"],
+      "#root/*": ["./*"],
+    }
   },
   "ts-node": {
     "transpileOnly": true,

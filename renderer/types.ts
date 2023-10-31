@@ -1,45 +1,37 @@
-export type { PageContextServer };
-export type { PageContextClient };
-export type { PageContext };
-export type { PageProps };
+export type { PageContextServer }
+export type { PageContextClient }
+export type { PageContext }
+export type { PageProps }
 
-import React from "react";
+import React from 'react'
 import type {
   PageContextBuiltInServer as PageContextBuiltIn,
-  
-  // When using Client Routing https://vite-plugin-ssr.com/clientRouting
+
+  // When using Client Routing https://vike.com/clientRouting
   PageContextBuiltInClientWithClientRouting as PageContextBuiltInClient
 
   // When using Server Routing
   // PageContextBuiltInClientWithServerRouting as PageContextBuiltInClient,
   //*/
-} from "vite-plugin-ssr/types";
+} from 'vike/types'
 
-type Page = (pageProps: PageProps) => React.ReactElement;
-type PageProps = {};
+import type { QueryOptions, DehydratedState, QueryFunction } from '@tanstack/react-query'
+import PropTypes from 'prop-types'
 
-export type PageContextCustom = {
-  Page: Page;
-  pageProps?: PageProps;
-  urlPathname: string;
-  exports: {
-    documentProps?: {
-      title?: string;
-      description?: string;
-    };
-  };
-  documentProps?: {
-    title?: string;
-    description?: string;
-  };
-  dehydratedState?: unknown;
-  isHydration: boolean;
-};
+type Page = (pageProps: PageProps) => React.ReactElement
+type PageProps = typeof PropTypes.any
 
-type PageContextServer = PageContextBuiltIn<Page> & PageContextCustom;
-type PageContextClient = PageContextBuiltInClient<Page> & PageContextCustom;
+type PageContextCustom = {
+  Page: Page
+  pageProps?: {
+    prefetchQueries?: QueryPrefetch
+    dehydratedState?: DehydratedState
+  }
+  isHydration: boolean
+}
 
-type PageContext = PageContextClient | PageContextServer;
-import type { Query, QueryCache, QueryOptions } from "@tanstack/react-query";
+type PageContextServer = PageContextBuiltIn<Page> & PageContextCustom
+type PageContextClient = PageContextBuiltInClient<Page> & PageContextCustom
 
-export type QueryPrefetch = [string, { fn: Query; options?: QueryOptions }];
+type PageContext = PageContextClient | PageContextServer
+type QueryPrefetch = [string, { fn: QueryFunction; options?: QueryOptions }]
