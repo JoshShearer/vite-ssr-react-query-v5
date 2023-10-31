@@ -27,6 +27,7 @@ type PageContextCustom = {
     prefetchQueries?: QueryPrefetch
     dehydratedState?: DehydratedState
   }
+  PRELOADED_STATE?: string
   isHydration: boolean
 }
 

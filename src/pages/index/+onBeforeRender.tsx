@@ -30,7 +30,7 @@ async function onBeforeRender(pageContext: PageContextServer) {
     }
 
     let dehydratedState: DehydratedState | undefined;
-    console.log("🚀 ~ file: +onBeforeRender.tsx:25 ~ onBeforeRender ~ prefetchQueries:", prefetchQueries)
+    console.log("🚀 ~ file: +onBeforeRender.tsx:25 ~ onBeforeRender/home ~ prefetchQueries:", prefetchQueries)
     //   if (name !== 'anonymous' && !names.includes(name)) {
     //     throw render(404, `Unknown name: ${name}.`)
     //   }

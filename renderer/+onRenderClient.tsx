@@ -12,7 +12,8 @@ async function onRenderClient(pageContext: PageContext) {
   console.log("🚀 ~ file: +onRenderClient.tsx:28 ~ onRenderClient ~ pageContext:", JSON.stringify(pageContext))
   const { Page, pageProps } = pageContext
   console.log("🚀 ~ file: +onRenderClient.tsx:27 ~ onRenderClient ~ pageProps:", pageProps)
-
+  const preloadedState = pageContext.PRELOADED_STATE;
+  console.log("🚀 ~ file: +onRenderClient.tsx:38 ~ onRenderClient ~ preloadedState:", preloadedState ? "redux state found" : "no redux state")
 
   const page = (
     <PageShell pageContext={pageContext}>

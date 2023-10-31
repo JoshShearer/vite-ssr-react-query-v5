@@ -21,6 +21,10 @@ const queryClient = new QueryClient({
 
 async function onBeforeRender(pageContext: PageContextServer) {
 
+    const curentEnv = typeof window !== "undefined" ? "Browser" : "Server";
+
+    console.log("🚀 ~ file: +onBeforeRender.tsx:26 ~ onBeforeRender/about ~ currentEnv:", curentEnv)
+
     const prefetchQueries = {
         ['usersAbout']: {
             fn: getUsers
